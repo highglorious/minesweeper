@@ -9,9 +9,10 @@ import { Cell } from "./components/cell";
 function App(): ReactElement {
   const [cells, setCells] = useState(generateCells());
 
-  const board = cells.map((row) =>
-    row.map(({ value, state }) => <Cell cell={value} />)
+  const board = cells.map((row, i) =>
+    row.map(({ value, state }, j) => <Cell key={i * 10 + j} cell={value} />)
   );
+  console.log("ccc", cells);
 
   return (
     <div className="App">

@@ -28,8 +28,8 @@ export const SegmentDisplay: FC<SegmentDisplayProps> = ({ value }) => {
 
   return (
     <div className={styles.display}>
-      {digits.map((digit) => (
-        <Segment segment={digit} />
+      {digits.map((digit, i) => (
+        <Segment key={i} segment={digit} />
       ))}
     </div>
   );

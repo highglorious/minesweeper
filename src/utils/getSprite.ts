@@ -9,10 +9,9 @@ enum spriteWidth {
   segment = 14,
   smile = 27,
   cell = 17,
-  digit = 17,
 }
 
-enum smileVariant {
+export enum smileVariant {
   normal,
   pressed,
   scary,
@@ -20,8 +19,8 @@ enum smileVariant {
   dead,
 }
 
-enum cellVariant {
-  normal,
+export enum cellVariant {
+  normal = 10,
   pressed,
   flag,
   question,
@@ -39,14 +38,9 @@ export const getSegmentSprite = (segment: number) => {
   } else {
     spriteXPos = (1 - segment) * spriteWidth.segment;
   }
+
   //console.log("x=", spriteXPos, "y=", spriteYPos);
 
-  return `${spriteXPos}px ${spriteYPos}px`;
-};
-
-export const getDigitSprite = (digit: number) => {
-  const spriteYPos = -spriteYPosition.digit;
-  const spriteXPos = (1 - digit) * spriteWidth.digit;
   return `${spriteXPos}px ${spriteYPos}px`;
 };
 
@@ -56,8 +50,16 @@ export const getSmileSprite = (smile: smileVariant) => {
   return `${spriteXPos}px ${spriteYPos}px`;
 };
 
-export const getCellSprite = (cell: cellVariant) => {
-  const spriteYPos = -spriteYPosition.cell;
-  const spriteXPos = -(cell * spriteWidth.cell);
+export const getCellSprite = (cell: cellVariant | number) => {
+  let spriteYPos = -spriteYPosition.digit;
+  let spriteXPos = (1 - cell) * spriteWidth.cell;
+  if (cell === 0) {
+    spriteYPos = -spriteYPosition.cell;
+    spriteXPos = -spriteWidth.cell;
+  }
+  if (cell > 9) {
+    spriteYPos = -spriteYPosition.cell;
+    spriteXPos = -(cell % 10) * spriteWidth.cell;
+  }
   return `${spriteXPos}px ${spriteYPos}px`;
 };
