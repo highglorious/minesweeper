@@ -1,0 +1,16 @@
+.display {
+  border-width: 2px;
+  border-style: solid;
+  border-right-color: white;
+  border-bottom-color: white;
+  border-left-color: #7b7b7b;
+  border-top-color: #7b7b7b;
+  width: calc(13px * 3 + 4);
+  height: calc(23px + 4);
+  display: flex;
+}
+.segment {
+  width: 13px;
+  height: 23px;
+  background-image: url("../../assets/minesweeper-sprites.png");
+}
