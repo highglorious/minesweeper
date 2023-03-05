@@ -2,7 +2,7 @@ import { cellVariant } from "./getSprite";
 
 export const ROWS = 16;
 export const COLS = 16;
-export const BOMBS = 10;
+export const BOMBS = 40;
 export const AMBIENT = [
   [-1, -1],
   [1, 1],
