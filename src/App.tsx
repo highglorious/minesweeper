@@ -70,12 +70,12 @@ export const App = (): ReactElement => {
 
           if (draft[row][col].state === cellVariant.pressed) {
             draft[row][col].state = cellVariant.opened;
-            setCheckedCells((prev) => prev + 1);
+            setCheckedCells(checkedCells + 1);
           }
 
           if (draft[row][col].value === 0) {
             counter = showSafetyCells(row, col, draft);
-            setCheckedCells((prev) => prev + counter);
+            setCheckedCells(checkedCells + counter);
           }
         });
       }
@@ -83,7 +83,6 @@ export const App = (): ReactElement => {
 
   const handleRigthCellClick =
     (row: number, col: number) => (e: MouseEvent<HTMLButtonElement>) => {
-      console.log("RIGHT CLICK");
       e.preventDefault();
       if (play) {
         setCells((draft) => {
@@ -94,16 +93,12 @@ export const App = (): ReactElement => {
             bombCount !== 0
           ) {
             draft[row][col].state = cellVariant.flag;
-            console.log("bomb-", bombCount);
-            setBombCount((prev) => prev - 1);
+            setBombCount(bombCount - 1);
           } else if (draft[row][col].state === cellVariant.flag) {
             draft[row][col].state = cellVariant.question;
-            console.log("bomb+", bombCount);
-            setBombCount((prev) => prev + 1);
+            setBombCount(bombCount + 1);
           } else if (draft[row][col].state === cellVariant.question) {
             draft[row][col].state = cellVariant.hidden;
-            //console.log("bomb+", bombCount);
-            //setBombCount((prev) => prev + 1);
           }
         });
       }
@@ -111,7 +106,6 @@ export const App = (): ReactElement => {
 
   const handleCellDown =
     (row: number, col: number) => (e: MouseEvent<HTMLButtonElement>) => {
-      console.log("DOWN CLICK");
       if (e.buttons === 1) {
         if (
           play &&
@@ -128,16 +122,11 @@ export const App = (): ReactElement => {
               setFirstClick(false);
               setBombs(plantBombs(row, col, draft));
               handleStopwatchStart();
-              logBoard(draft);
+              //logBoard(draft);
             }
           });
         }
       }
-    };
-
-  const handleCellLeave =
-    (row: number, col: number) => (e: MouseEvent<HTMLButtonElement>) => {
-      //handleCellClick(row, col);
     };
 
   const handleResetGame = () => {
@@ -165,7 +154,6 @@ export const App = (): ReactElement => {
         col={j}
         handleClick={handleCellClick}
         handleDown={handleCellDown}
-        handleLeave={handleCellLeave}
         handleRightClick={handleRigthCellClick}
       />
     ))

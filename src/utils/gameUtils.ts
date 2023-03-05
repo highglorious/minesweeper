@@ -2,7 +2,7 @@ import { cellVariant } from "./getSprite";
 
 export const ROWS = 16;
 export const COLS = 16;
-export const BOMBS = 5;
+export const BOMBS = 10;
 export const AMBIENT = [
   [-1, -1],
   [1, 1],
@@ -80,6 +80,20 @@ export const showBombs = (cells: CellType[][], arr: number[]) => {
       cells[Math.floor(value / ROWS)][value % ROWS].state = cellVariant.bomb;
     }
   });
+  showMissingFlags(cells);
+};
+
+export const showMissingFlags = (cells: CellType[][]) => {
+  for (let i = 0; i < ROWS; i++) {
+    for (let j = 0; j < COLS; j++) {
+      if (
+        cells[i][j].value !== cellVariant.bomb &&
+        cells[i][j].state === cellVariant.flag
+      ) {
+        cells[i][j].state = cellVariant.crossBomb;
+      }
+    }
+  }
 };
 
 const generateBombs = (startCell: number) => {
@@ -108,7 +122,7 @@ export const showSafetyCells = (
   j: number,
   cells: CellType[][]
 ): number => {
-  let counter = 0;
+  let counter = 1;
 
   const cleanCells: number[][] = [];
   cleanCells.push([i, j]);
@@ -152,7 +166,6 @@ export const showSafetyCells = (
     const item = cleanCells.shift();
     getAmbientCells(item![0], item![1]);
   } while (cleanCells.length > 0);
-
   return counter;
 };
 

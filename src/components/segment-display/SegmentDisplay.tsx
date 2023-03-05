@@ -1,6 +1,5 @@
 import React, { FC } from "react";
 import { getSegmentSprite } from "../../utils/getSprite";
-import sprite from "./assets/minesweeper-sprites.png";
 
 import styles from "./SegmentDisplay.module.css";
 
