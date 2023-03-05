@@ -32,6 +32,7 @@
   border-top-color: #7b7b7b;
   width: calc(16px * 16);
   height: calc(16px * 16);
+
   display: flex;
   flex-wrap: wrap;
 }

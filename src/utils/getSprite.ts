@@ -20,7 +20,8 @@ export enum smileVariant {
 }
 
 export enum cellVariant {
-  normal = 10,
+  opened = 9,
+  hidden,
   pressed,
   flag,
   question,
@@ -38,8 +39,6 @@ export const getSegmentSprite = (segment: number) => {
   } else {
     spriteXPos = (1 - segment) * spriteWidth.segment;
   }
-
-  //console.log("x=", spriteXPos, "y=", spriteYPos);
 
   return `${spriteXPos}px ${spriteYPos}px`;
 };
