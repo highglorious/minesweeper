@@ -1,4 +1,4 @@
-# minesweeper
+# Minesweeper the Game
 ## Stack
 - React
 - TS
